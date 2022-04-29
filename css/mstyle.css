@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'LeeSeoyun';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+a { text-decoration: none; color: #13ABE8; }
+* {
+    font-family: 'LeeSeoyun',sans-serif;
+}
+table{
+    margin-top: 10px;
+
+}
+table th{
+    font-size: 30px; text-align: center;
+}
+
+form input:not(input[type='submit']),select{
+    border: 1px solid #d9d9d9; width: 500px; height: 50px;
+    margin: 5px; padding-left: 10px; border-radius: 5px;
+    box-sizing: border-box; font-size: 18px;
+}
+form .btn_search{
+    border: 1px solid #d9d9d9; width: 70px; height: 50px;
+    margin: 5px;border-radius: 5px;
+    box-sizing: border-box; font-size: 18px;
+}
+.btn_write{
+    background-color: white; border:none;
+    text-decoration: none; color: #13ABE8;
+    font-size: 40px; cursor: pointer;
+}
+
+form textarea{
+    resize: none;
+    border: 1px solid #d9d9d9; border-radius: 5px;
+    font-size: 30px;
+}
+
+tr{
+    font-size: 35px;
+}
+
+
+#header_container {
+    display: flex;
+    justify-content: center;
+
+}
+#left-header {
+    flex: 7;
+    text-align: center;
+    width: 1000px; height: 200px;
+    margin-left: 18%; margin-top: 10px;
+}
+#right-header {
+    flex: 1;
+    text-align: right; font-size: 24px;
+    text-align: center;
+
+}
+#body_container{
+    display: flex;
+}
+#left-body{
+    margin-top: 20px;
+    flex:1;
+    text-align: right;
+
+}
+#right-body{
+    flex:5;
+    border: 5px solid #13ABE8; border-radius: 16px; border-style: dashed;
+    margin-right: 10%; height: 1000px;
+    text-align: center;
+    border-left-color: #108DBF;
+    border-bottom-color: #108DBF;
+
+}
+.load_btn{
+    width: 80px; height: 170px;
+    margin-bottom: 10px;
+    border: 4px solid #108DBF; border-radius: 4px;border-style: dashed;
+    background-color: rgba(16,141,191,0.4);
+    border-right: none;
+    cursor: pointer;
+}

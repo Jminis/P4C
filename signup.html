@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>P4CS</title>
+</head>
+<body>
+    <div class="body-container">
+        <div class="left-container">
+            <form action="signup.php" method="post">
+                <p><input type="email" name="useremail" placeholder="Input your E-mail" style="width:415px">
+                <input type="button"  value="Send" onclick="alert(1);"> </p>
+                <p><input type="text" name="check_code" placeholder="Verify your E-mail address" style="width:330px">
+                <input type="button"  value="Resend" style="font-size:18px" onclick="alert(1);"> <input type="button"  value="Verify" onclick="alert(1);"> </p>
+                <br/>
+                <p><input type="text" name="userid" placeholder="Input your ID" style="width:415px">
+                <input type="button"  value="Check" onclick="alert(1);"> </p>
+                <p><input type="password" name="userpw" placeholder="Input your PW"></p>
+                <p><input type="password" name="userpw_ck" placeholder="Input your PW one more"></p>
+                <p><input type="text" name="username" placeholder="이름을 입력해주세요"></p>
+                <p><label>Web Hacking<input type="radio" name="usertrack" value="web" checked="checked"></label>
+                &nbsp;&nbsp;<label>System Hacking<input type="radio" name="usertrack" value="sys"></label>
+                </p>
+                <input type="submit" value="Sign UP">
+            </form>
+            <p> <a href="login.html">LOGIN</a> </p>
+        </div>
+
+        <div class="right-container">
+            <p style="font-size: 35px; color: #13ABE8;">
+                열심히 하겠다던 그 약속,<br/><br/>
+                보란듯이 지켰으면 좋겠다.<br/><br/>
+                실패하더라도, <br/><br/>
+                포기 안했으면 좋겠다.
+            </p>
+
+        </div>
+    </div>
+    <div class="footer-container"></div>
+
+</body>
+</html>
