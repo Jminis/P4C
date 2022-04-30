@@ -2,7 +2,7 @@
 include ('db_conn.php');
 session_start();
 $writer=$_SESSION['username'];
-$track=$_SESSION['track'];
+$track=$_SESSION['usertrack'];
 $title=$_POST['title'];
 $content=$_POST['content'];
 

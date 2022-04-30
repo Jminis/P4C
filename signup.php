@@ -1,6 +1,9 @@
 <?php
+error_reporting( E_ALL );
+ini_set( "display_errors", 1 );
+
 include ('db_conn.php');
-$uemail = $_POST['useremail'];
+$uemail = $_COOKIE['useremail'];
 $uid = $_POST['userid'];
 $upw = $_POST['userpw'];
 $upwc = $_POST['userpw_ck'];
@@ -37,8 +40,22 @@ if($uemail == NULL || $uid == NULL || $upw == NULL || $upwc==NULL || $uname==NUL
 <?php
         exit;
     }
-    $enc_pw=sha1()
-    $sql = "INSERT INTO userinfo (useremail,userid,userpw,username,usertrack,createtime) VALUES('$uemail','$uid','$upw','$uname','$utrack',now())";
+
+    $cksql = "SELECT checked FROM varify WHERE useremail='$uemail' ORDER BY createtime DESC LIMIT 1";
+    $result=mysqli_query($conn,$cksql);
+    $row=mysqli_fetch_array($result);
+    if($row['checked'] == FALSE){
+?>
+                    <script>
+                            alert('인증되지 않은 이메일 정보입니다.');
+                            history.go(-1);
+                    </script>
+<?php
+        mysqli_close($conn);
+        exit;
+    }
+
+    $sql = "INSERT INTO userinfo (useremail,userid,userpw,username,usertrack,createtime) VALUES('$uemail','$uid',sha2('$upw',256),'$uname','$utrack',now())";
     $result = mysqli_query($conn, $sql);
     if($result){
 ?>
@@ -47,6 +64,6 @@ if($uemail == NULL || $uid == NULL || $upw == NULL || $upwc==NULL || $uname==NUL
                     location.replace('./login.html');
             </script>
 <?php
-    }
+}
 }
 ?>

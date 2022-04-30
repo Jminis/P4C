@@ -18,9 +18,8 @@
         </div>
 <?php
     include('db_conn.php');
-    $conn = db_connect();
     $sql ="SELECT * FROM story ORDER BY idx desc";
-    $result = mysqli_query($conn, $sql);
+    $result = mq($sql);
     $total = mysqli_num_rows($result);
 ?>
 
@@ -52,6 +51,7 @@
                         <th width = "800">제목</th>
                         <th width = "200">작성자</th>
                         <th width = "100">조회수</th>
+                        <th width = "100">추천</th>
                     </thead>
                     <tbody>
                         <?php
@@ -65,10 +65,11 @@
                         ?>
                         <tr class='<?php echo $row['track']; ?>'>
                             <td width="100"><?php echo $row['idx']; ?></td>
-                            <td width="200"><?php echo $row['createtime']?></td>
-                            <td width="800"><a href="read.php?idx=<?php echo $row["idx"];?>"><?php echo $title;?></a></td>
+                            <td style="font-size: 25px;" width="200"><?php echo $row['createtime']?></td>
+                            <td width="700"><a href="read.php?idx=<?php echo $row["idx"];?>"><?php echo $title;?></a></td>
                             <td width="200"><?php echo $row['writer']?></td>
                             <td width="100"><?php echo $row['hit']; ?></td>
+                            <td width="100"><?php echo $row['rmd_cnt']; ?></td>
                         </tr>
                         <?php } ?>
                     </tbody>

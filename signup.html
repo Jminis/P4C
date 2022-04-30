@@ -2,20 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css?dd">
     <title>P4CS</title>
 </head>
 <body>
     <div class="body-container">
         <div class="left-container">
+            <form action="email_varify.php" method="post">
+                <p><input id="id_email" type="email" name="useremail" placeholder="Input your E-mail" style="width:415px">
+                <input id="btn_varify" type="submit"  value="Send"> </p>
+            </form>
+
+            <form action="varify_code.php" method="post">
+                <p><input id="id_code" type="text" name="input_code" placeholder="Verify your E-mail address" style="width:330px">
+                    <input id="target_email" type="hidden" name="useremail" value="">
+                    <input id="btn_check" type="submit"  value="Varify"> </p>
+            </form>
+
             <form action="signup.php" method="post">
-                <p><input type="email" name="useremail" placeholder="Input your E-mail" style="width:415px">
-                <input type="button"  value="Send" onclick="alert(1);"> </p>
-                <p><input type="text" name="check_code" placeholder="Verify your E-mail address" style="width:330px">
-                <input type="button"  value="Resend" style="font-size:18px" onclick="alert(1);"> <input type="button"  value="Verify" onclick="alert(1);"> </p>
                 <br/>
-                <p><input type="text" name="userid" placeholder="Input your ID" style="width:415px">
-                <input type="button"  value="Check" onclick="alert(1);"> </p>
+                <p><input type="text" name="userid" placeholder="Input your ID">
                 <p><input type="password" name="userpw" placeholder="Input your PW"></p>
                 <p><input type="password" name="userpw_ck" placeholder="Input your PW one more"></p>
                 <p><input type="text" name="username" placeholder="이름을 입력해주세요"></p>

@@ -21,7 +21,7 @@ form input:not(input[type='submit']),select{
     margin: 5px; padding-left: 10px; border-radius: 5px;
     box-sizing: border-box; font-size: 18px;
 }
-form .btn_search{
+.btn_search{
     border: 1px solid #d9d9d9; width: 70px; height: 50px;
     margin: 5px;border-radius: 5px;
     box-sizing: border-box; font-size: 18px;
@@ -41,6 +41,24 @@ form textarea{
 tr{
     font-size: 35px;
 }
+#cmt_submit{
+    position: absolute;
+    border: 1px solid #d9d9d9; width: 70px; height: 50px;
+    border-radius: 5px; font-size: 20px;
+    color: white;    background: #707070;
+    cursor: pointer;
+    margin: 20px;
+}
+
+#upr_submit{
+    position: absolute;
+    border: 1px solid #d9d9d9; width: 70px; height: 50px;
+    border-radius: 5px; font-size: 20px;
+    color: white;    background: #707070;
+    cursor: pointer;
+    margin: 5px;
+}
+
 
 
 #header_container {
@@ -72,12 +90,12 @@ tr{
 #right-body{
     flex:5;
     border: 5px solid #13ABE8; border-radius: 16px; border-style: dashed;
-    margin-right: 10%; height: 1000px;
+    margin-right: 10%; height: 1500px;
     text-align: center;
     border-left-color: #108DBF;
     border-bottom-color: #108DBF;
-
 }
+
 .load_btn{
     width: 80px; height: 170px;
     margin-bottom: 10px;

@@ -18,9 +18,8 @@
         </div>
 <?php
     include('db_conn.php');
-    $conn = db_connect();
     $sql ="SELECT * FROM story ORDER BY idx desc";
-    $result = mysqli_query($conn, $sql);
+    $result = mq($sql);
     $total = mysqli_num_rows($result);
 ?>
 
@@ -33,10 +32,13 @@
             <div id="right-body">
             	<div style="margin-top: 20px;"><a float="left" href="main.php" style="font-size: 40px;">돌아가기&nbsp;</a></div>
 				<p>
-					<form method ="post" action="write_action.php">
+					<form method ="post" action="write_action.php" enctype="multipart/form-data">
 						<p><input type="text" name="title" placeholder="TITLE"></p>
 						<p><textarea rows=15px cols=40px name="content" placeholder="CONTENTS"></textarea></p>
-						<p>추후 파일 업로드 자리입니다.</p>
+
+                            <input type="file" name="fileToUpload">
+                            <input id="upr_submit" type="submit" value="업로드" name="userfile">
+
 						<p><input class ="btn_write" type="submit" value="작성하기"></p>
 					</form>
 
