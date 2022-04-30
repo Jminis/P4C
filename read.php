@@ -19,7 +19,7 @@
 <?php
     include('db_conn.php');
     $idx=$_GET['idx'];
-    $sql ="SELECT writer,createtime,hit,title,content FROM story WHERE idx='$idx'";
+    $sql ="SELECT * FROM story WHERE idx='$idx'";
     $row=mqr($sql);
 
 
@@ -43,6 +43,7 @@
                     <?php echo $row['createtime']?><br/>
                     글쓴이:<?php echo $row['writer'];?>
 
+                    <!--글 삭제 -->
                     <?php
                     if($row['writer'] == $_SESSION['username']){
                         ?>
@@ -52,7 +53,13 @@
                 </p>
 				<p>
 						<p style="font-size:50px;"><?php echo $row['title']?></p>
-						<p style="font-size:30px; height:400px"><?php echo $row['content']?></p>
+						<p style="font-size:30px; height:300px; box-sizing : border-box;"><?php echo $row['content']?></p>
+                        <?php if($row['file'] != NULL) {?>
+                        <img style="width: 400px; margin-bottom:20px;" src="<?php echo 'upload/'.$row['file'];?>">
+                        <?php
+                            }
+                        ?>
+
 				</p>
 
                 <div id="cmt_form">

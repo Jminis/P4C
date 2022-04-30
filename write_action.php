@@ -16,21 +16,31 @@ if( !isset ($_SESSION['username'] ) ){
 <?php
 }
 else{
+    // 파일 업로드
+    if($_FILES['userfile']['name'] != NULL){
+        $uploaddir = '/opt/lampstack-8.1.4-0/apache2/htdocs/upload/';
+        $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+        if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+            alert_msg('파일 업로드 성공!');
+        } else {
+            alert_msg('파일 업로드 실패!');
+        }
+    }
 
-error_reporting( E_ALL );
-ini_set( "display_errors", 1 );
 
+    $file = $_FILES['userfile']['name'];
+    $sql = "INSERT INTO story (createtime, writer, track, title, content,hit,file) values(now(),'$writer','$track','$title','$content',0,'$file')";
+    $result = mq($sql);
 
-$conn = db_connect();
-$sql = "INSERT INTO story  (createtime, writer, track, title, content,hit) values(now(),'$writer','$track','$title','$content',0)";
-$result = mysqli_query($conn,$sql);
-
-if($result){
-?>	<script> alert("글이 등록되었습니다.");	location.replace("main.php"); </script>
-<?php
-}
-else{
-	echo "FAIL";
+    if($result){
+        alert_msg('글이 등록되었습니다.');
+        location_replace('/main.php');
+        exit;
+    }
+    else{
+    	alert_msg('오류가 발생했습니다.');
+        location_replace('/main.php');
+        exit;
 }
 mysqli_close($conn);
 

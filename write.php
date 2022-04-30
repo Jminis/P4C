@@ -35,10 +35,7 @@
 					<form method ="post" action="write_action.php" enctype="multipart/form-data">
 						<p><input type="text" name="title" placeholder="TITLE"></p>
 						<p><textarea rows=15px cols=40px name="content" placeholder="CONTENTS"></textarea></p>
-
-                            <input type="file" name="fileToUpload">
-                            <input id="upr_submit" type="submit" value="업로드" name="userfile">
-
+                        <input type="file" name="userfile">
 						<p><input class ="btn_write" type="submit" value="작성하기"></p>
 					</form>
 
