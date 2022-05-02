@@ -5,36 +5,40 @@
         <link rel="stylesheet" href="/css/mstyle.css">
         <title>P4CSS</title>
     </head>
+
     <body>
         <div id ="header_container">
             <div id="left-header">
                 <a href="main.php" style="font-size: 150px">Story Shared</a>
             </div>
             <div id="right-header"><p ><br/>
-                <?php   session_start();  if(isset($_SESSION['username']))  echo $_SESSION['username'];  else echo"<script>location.replace('/login.html')</script>"?> 님
+                <?php include('db_conn.php') ; session_start();  if(isset($_SESSION['username']))  echo $_SESSION['username'];  else location_replace('login.html'); ?> 님
                 </p>
                 <a href="logout.php" >LOGOUT</a>
             </div>
         </div>
 <?php
-    include('db_conn.php');
     $idx=$_GET['idx'];
     $sql ="SELECT * FROM story WHERE idx='$idx'";
     $row=mqr($sql);
 
-
-    $hit=$row['hit']+1;
-    $hitsql = "UPDATE story SET hit = '$hit' WHERE idx = '$idx'";
-    $hitquery=mq($hitsql);
-
+    if(!isset($_COOKIE['readNo_'.$idx])) {
+        $hit=$row['hit']+1;
+        $hitsql = "UPDATE story SET hit = '$hit' WHERE idx = '$idx'";
+        $hitquery=mq($hitsql);
+        setcookie("readNo_".$idx, $idx, time() + 60 * 60);
+    }
 ?>
 
         <div id="body_container">
             <div id="left-body">
-                <input class="load_btn" type="button" onclick="alert(1);"><br/>
-                <input class="load_btn" type="button" onclick="alert(1);">
-
+                <div id="lb_wrap">
+                    <input id="lb_all" class="load_btn" type="button" value="ALL" onclick="location.href='main.php'"><br/>
+                    <input id="lb_web" class="load_btn" type="button" value="WEB" onclick="location.href='main.php?track=web'"><br/>
+                    <input id="lb_sys" class="load_btn" type="button" value="SYS" onclick="location.href='main.php?track=sys'">
+                </div>
             </div>
+
             <div id="right-body">
             	<div style="margin-top: 20px;">
                     <a href="main.php" style="font-size: 40px;">돌아가기&nbsp;</a>
@@ -45,21 +49,16 @@
 
                     <!--글 삭제 -->
                     <?php
-                    if($row['writer'] == $_SESSION['username']){
-                        ?>
+                    if($row['writer'] == $_SESSION['username']){ ?>
                         <a href="delete.php?idx=<?php echo $idx;?>" style="font-size: 20px;">삭제</a>
-                        <?php
-                    }?>
+                        <?php } ?>
                 </p>
 				<p>
 						<p style="font-size:50px;"><?php echo $row['title']?></p>
 						<p style="font-size:30px; height:300px; box-sizing : border-box;"><?php echo $row['content']?></p>
-                        <?php if($row['file'] != NULL) {?>
+                        <?php if($row['file'] != NULL) { ?>
                         <img style="width: 400px; margin-bottom:20px;" src="<?php echo 'upload/'.$row['file'];?>">
-                        <?php
-                            }
-                        ?>
-
+                        <?php } ?>
 				</p>
 
                 <div id="cmt_form">
@@ -86,20 +85,14 @@
                                 $sql ="SELECT * FROM comment WHERE story_idx='$idx'  ORDER BY idx desc";
                                 $result = mq($sql);
                                     while($row = $result->fetch_array())
-                                    {
-                                ?>
+                                    { ?>
                                 <tr>
                                     <td width="1000"><?php echo $row['content']; ?></td>
-
                                     <td width="200"><?php echo $row['writer']?></td></td>
                                     <td width="200" style="font-size:20px"><?php echo $row['createtime']?></td>
-                                    <td width="100"><?php if($row['writer'] == $_SESSION['username']){
-                                        ?>
+                                    <td width="100"><?php if($row['writer'] == $_SESSION['username']){ ?>
                                         <a href="del_cmt.php?idx=<?php echo $row['idx'];?>" style="font-size: 20px;">삭제</a>
-                                        <?php
-                                    }
-                                    ?></td>
-
+                                        <?php } ?></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>

@@ -27,7 +27,6 @@ else{
         }
     }
 
-
     $file = $_FILES['userfile']['name'];
     $sql = "INSERT INTO story (createtime, writer, track, title, content,hit,file) values(now(),'$writer','$track','$title','$content',0,'$file')";
     $result = mq($sql);

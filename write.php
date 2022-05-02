@@ -11,13 +11,13 @@
                 <a href="main.php" style="font-size: 150px">Story Shared</a>
             </div>
             <div id="right-header"><p ><br/>
-                <?php   session_start();  if(isset($_SESSION['username']))  echo $_SESSION['username'];  else echo"<script>location.replace('/login.html')</script>"?> 님
+                <?php include('db_conn.php') ; session_start();  if(isset($_SESSION['username']))  echo $_SESSION['username'];  else location_replace('login.html'); ?> 님
                 </p>
                 <a href="logout.php" >LOGOUT</a>
             </div>
         </div>
+
 <?php
-    include('db_conn.php');
     $sql ="SELECT * FROM story ORDER BY idx desc";
     $result = mq($sql);
     $total = mysqli_num_rows($result);
@@ -25,10 +25,13 @@
 
         <div id="body_container">
             <div id="left-body">
-                <input class="load_btn" type="button" onclick="alert(1);"><br/>
-                <input class="load_btn" type="button" onclick="alert(1);">
-
+                <div id="lb_wrap">
+                    <input id="lb_all" class="load_btn" type="button" value="ALL" onclick="location.href='main.php'"><br/>
+                    <input id="lb_web" class="load_btn" type="button" value="WEB" onclick="location.href='main.php?track=web'"><br/>
+                    <input id="lb_sys" class="load_btn" type="button" value="SYS" onclick="location.href='main.php?track=sys'">
+                </div>
             </div>
+
             <div id="right-body">
             	<div style="margin-top: 20px;"><a float="left" href="main.php" style="font-size: 40px;">돌아가기&nbsp;</a></div>
 				<p>

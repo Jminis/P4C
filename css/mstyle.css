@@ -74,7 +74,7 @@ tr{
 }
 #body_container{
     display: flex;
-    flex-wrap : wrap;
+    
 }
 #left-body{
     margin-top: 20px;
@@ -99,4 +99,5 @@ tr{
     background-color: rgba(16,141,191,0.4);
     border-right: none;
     cursor: pointer;
+    font-size: 30px;
 }

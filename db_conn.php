@@ -7,12 +7,14 @@ function db_connect(){
         $conn = mysqli_connect("localhost","root","","my_web") or die ("Can't access DB");
         return $conn;
 }
+
 function mq($sql){
     $conn = db_connect();
     $result = mysqli_query($conn, $sql);
     mysqli_close($conn);
     return $result;
 }
+
 function mqr($sql){
     $conn = db_connect();
     $result = mysqli_query($conn, $sql);

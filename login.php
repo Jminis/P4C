@@ -2,13 +2,12 @@
 include ('db_conn.php');
 
 session_start();
-$conn=db_connect();
 $uid = $_POST['userid'];
 $upw = $_POST['userpw'];
 
 $sql = "SELECT * FROM userinfo WHERE userid='$uid' AND userpw=sha2('$upw',256)";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
+$result = mq($sql);
+$row = $result->fetch_array();
 
 if($result->num_rows == 1){
     $_SESSION['userid'] = $row['userid'];
@@ -21,5 +20,4 @@ if($result->num_rows == 1){
     history_go();
    exit;
 }
-
 ?>
