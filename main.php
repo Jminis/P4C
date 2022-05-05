@@ -67,8 +67,8 @@
                         $result = mq($sql);
                         $total = mysqli_num_rows($result);
 
-                        $list = 5;
-                        $block_cnt = 5;
+                        $list = 10;
+                        $block_cnt = 10;
                         $block_num = ceil($page / $block_cnt);
                         $block_start = (($block_num - 1) * $block_cnt) + 1;
                         $block_end = $block_start + $block_cnt - 1;

@@ -1,5 +1,10 @@
 <?php
 include ('db_conn.php');
+// for debug
+//error_reporting(-1);
+//ini_set('display_errors', 'On');
+//set_error_handler("var_dump");
+
 $useremail=$_POST['useremail'];
 setcookie ( 'useremail' , "$useremail" );
 
@@ -22,20 +27,23 @@ if($_POST['useremail']==NULL){
     //echo "<script>document.getElementById('target_email').value= '$useremail';</script>";
     //echo "<script>document.getElementById('btn_check').disabled = false;</script>";
     $random = get_random(6);
-    $sql = "SELECT createtime FROM varify WHERE useremail='$useremail' ORDER BY createtime DESC LIMIT 1";
+    
+	$sql = "SELECT createtime FROM varify WHERE useremail='$useremail' ORDER BY createtime DESC LIMIT 1";
     $row = mqr($sql);
     $current_time =  date("Y-m-d H:i:s",time());
     $createtime=$row['createtime'];
     $res=strtotime($current_time)-strtotime($createtime);
     if($res < 180){//3분이 안지난 경우
         alert_msg('재발송은 이전 발송 3분 이후에 가능합니다.');
-        history_go();
+		history_go();
+	exit;
     }
 
     //save_db for check
     $sql = "INSERT INTO varify (useremail,createtime,code) VALUES('$useremail',now(),'$random')";
     $result = mq($sql);
     alert_msg('인증코드가 전송되었습니다.\n5분내로 인증해주시길 바랍니다.');
+	alert_msg('[DEBUG] '.$random);
     history_go();
 
     //send mail
@@ -58,7 +66,7 @@ if($_POST['useremail']==NULL){
     $headers .= 'Content-type: text/html; charset=utf-8 ' . "\r\n";
     $headers .= 'X-Priority: 3 ' ."\r\n" ;
     $headers .= 'X-Mailer: PHP". phpversion() ' ."\r\n" ;
-    //$result=mail($to, $subject, $message, $headers);
+    $result=mail($to, $subject, $message, $headers);
     exit;
 
 }

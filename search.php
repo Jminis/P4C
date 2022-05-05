@@ -63,7 +63,7 @@
                         $key = $_GET['key'];
                         $value = $_GET['value'];
                         if($key == 'writer'){
-                            $ssql = "SELECT * FROM ($sql) AS sub WHERE $key=$value";
+                            $ssql = "SELECT * FROM ($sql) AS sub WHERE $key='$value'";
                         }else{
                             $ssql = "SELECT * FROM ($sql) AS sub WHERE $key  like '%{$value}%'";
                         }
@@ -71,8 +71,8 @@
                         $result = mq($ssql);
                         $total = mysqli_num_rows($result);
 
-                        $list = 5;
-                        $block_cnt = 5;
+                        $list = 10;
+                        $block_cnt = 10;
                         $block_num = ceil($page / $block_cnt);
                         $block_start = (($block_num - 1) * $block_cnt) + 1;
                         $block_end = $block_start + $block_cnt - 1;

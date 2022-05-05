@@ -23,7 +23,9 @@ else{
         if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
             alert_msg('파일 업로드 성공!');
         } else {
-            alert_msg('파일 업로드 실패!');
+	    	alert_msg('오류가 발생했습니다.');
+	        location_replace('/main.php');
+	        exit;
         }
     }
 

@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div id="right-body">
+            <div id="right-body" style="height: 1500px;">
             	<div style="margin-top: 20px;">
                     <a href="main.php" style="font-size: 40px;">돌아가기&nbsp;</a>
                 </div>
@@ -55,7 +55,7 @@
                 </p>
 				<p>
 						<p style="font-size:50px;"><?php echo $row['title']?></p>
-						<p style="font-size:30px; height:300px; box-sizing : border-box;"><?php echo $row['content']?></p>
+						<p style="font-size:30px; height:150px; box-sizing : border-box;"><?php echo $row['content']?></p>
                         <?php if($row['file'] != NULL) { ?>
                         <img style="width: 400px; margin-bottom:20px;" src="<?php echo 'upload/'.$row['file'];?>">
                         <?php } ?>

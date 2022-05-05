@@ -85,7 +85,7 @@ tr{
 #right-body{
     flex:5;
     border: 5px solid #13ABE8; border-radius: 16px; border-style: dashed;
-    margin-right: 10%; height: 1500px;
+    margin-right: 10%; height: 800px;
     text-align: center;
     border-left-color: #108DBF;
     border-bottom-color: #108DBF;
